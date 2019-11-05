@@ -1,18 +1,25 @@
 import express from 'express';
 import * as basic from './basic.js';
-import * as apiData from './apiData.js';
 
 const router = express.Router();
-
-router.get('/ping', (req, res) => res.json({ message: 'pong' }));
-
-// Basic rendering ----------------------------
-router.get('/home', basic.home);
-router.get('/homeWithPartials', basic.homeWithPartials);
-//---------------------------------------------
-
-// Rendering data from API --------------------
-router.get('/users/:username/repos', apiData.repos);
-//---------------------------------------------
+const DetectLanguage = require('detectlanguage');
+const apiKey = process.env.KEY;
+const detectLanguage = new DetectLanguage({
+    key: apiKey,
+    ssl: false,
+});
+router.get('/', basic.home);
+router.post('/searching', function(req, res){
+    const textToDetect = req.body.trans;
+    detectLanguage.detect(textToDetect, function(error, result) {
+        const context = {
+            data: {
+                title: JSON.stringify(result),
+            },
+        };
+        
+        res.render('home', context);
+    });
+});
 
 export default router;

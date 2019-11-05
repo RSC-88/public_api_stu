@@ -1,37 +1,21 @@
 {
-    "name": "express-handlebars-boilerplate",
+    "name": "OpenAPI",
     "version": "1.2.2",
-    "description":
-        "Boilerplate for server-side rendering using Handlebars and Express when you need a simple HTML/CSS page",
-    "contributors": [
-        {
-            "name": "Alexey Novak",
-            "email": "alexey.novak.mail@gmail.com"
-        },
-        {
-            "name": "Alexander Luksidadi",
-            "email": "alex.l@roserocket.com"
-        }
-    ],
+    "contributor": "Marcin S",
     "scripts": {
         "lint": "eslint server/",
         "clean:test": "node ./node_modules/del-cli/cli.js -f ./test-dist/",
-        "build:test":
-            "npm run clean:test && node ./node_modules/babel-cli/bin/babel.js test/ -d test-dist/",
-        "test":
-            "npm run build:test && node node_modules/mocha/bin/mocha --reporter spec test-dist/*",
+        "build:test": "npm run clean:test && node ./node_modules/babel-cli/bin/babel.js test/ -d test-dist/",
+        "test": "npm run build:test && node node_modules/mocha/bin/mocha --reporter spec test-dist/*",
         "clean": "node ./node_modules/del-cli/cli.js -f ./server-dist/",
         "build:css": "lessc --clean-css ./less/main.less ./public/css/main.min.css",
-        "build":
-            "npm run build:css && npm run clean && node ./node_modules/babel-cli/bin/babel.js server/ -d server-dist/",
+        "build": "npm run build:css && npm run clean && node ./node_modules/babel-cli/bin/babel.js server/ -d server-dist/",
         "start": "npm run build && node app.js"
     },
     "repository": {
         "type": "git",
         "url": "git@github.com:roserocket/express-handlebars-boilerplate.git"
     },
-    "homepage": "https://github.com/roserocket/express-handlebars-boilerplate",
-    "bugs": "https://github.com/roserocket/express-handlebars-boilerplate/issues",
     "keywords": [
         "express",
         "handlebars",
@@ -44,6 +28,7 @@
         "body-parser": "1.18.2",
         "bootstrap": "3.3.7",
         "console-stamp": "0.2.6",
+        "detectlanguage": "1.2.2",
         "dotenv": "4.0.0",
         "express": "4.16.2",
         "express-handlebars": "3.0.0",

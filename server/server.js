@@ -29,7 +29,7 @@ consoleStamp(console, { pattern: 'dd/mmm/yyyy:HH:MM:ss o' });
 logger.token('date', () => moment().format('DD/MMM/YYYY:HH:mm:ss ZZ'));
 
 app.use(logger('common'));
-app.use(bodyParser.json());
+app.use(bodyParser());
 //Defining middleware to serve static files
 app.use('/static', express.static(path.join(__dirname, '../public')));
 
@@ -58,10 +58,7 @@ app.use(
 );
 
 app.use('/', routes);
-app.use(notFoundRequest);
 
-app.use(logErrorsHandler);
-app.use(errorHandler);
 
 // set the port for the webservice
 if (process.argv.length > 2) {
